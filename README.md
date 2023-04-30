@@ -1,4 +1,4 @@
-# cs-ints
+# 50ints
 
 50 Computer Science problems related only to integers, with increasing levels of difficulty.
 
