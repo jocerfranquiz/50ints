@@ -1,33 +1,45 @@
+#!/usr/bin/env python3
 # 00. Sort a sequence of integers
 
 # Sort from less to more
 
 # first try
+import unittest
 
-def insertion_sort(l):
-  len_l = len(l)
 
-  if len_l < 2:
-    return l
-  if len_l == 2:
-    return [l[0], l[1]] if l[0] < l[1] else [l[1], l[0]]
-  if len_l > 2:
-    # Insertion-sort
-    for j in range(1, len(l)):
-      key = l[j]
-      # insert l[j] into the sorted seq l[0...j]
-      i = j - 1
-      while i > -1 and l[i] > key:
-        l[i + 1] = l[i]
-        i = i - 1
-      l[i + 1] = key
+def insertion_sort(_list):
+    len_list = len(_list)
 
-    return l
+    if len_list < 2:
+        return _list
+    if len_list == 2:
+        return [_list[0], _list[1]] if _list[0] < _list[1] else [_list[1], _list[0]]
+    if len_list > 2:
+        # Insertion-sort
+        for j in range(1, len(_list)):
+            key = _list[j]
+            # insert _list[j] into the sorted seq _list[0...j]
+            i = j - 1
+            while i > -1 and _list[i] > key:
+                _list[i + 1] = _list[i]
+                i = i - 1
+            _list[i + 1] = key
 
-if __name__ == '__main__':
+        return _list
 
-  l = [4,1,2,2,7]
 
-  print(insertion_sort(l))
+class TestInsertionSort(unittest.TestCase):
+    def test_insertion_sort(self):
+        self.assertEqual(insertion_sort([4, 1, 2, 2, 7]), [1, 2, 2, 4, 7])
+        self.assertEqual(insertion_sort([5, 3, 1, 4, 2]), [1, 2, 3, 4, 5])
+        self.assertEqual(insertion_sort([5, 4, 3, 2, 1]), [1, 2, 3, 4, 5])
+        self.assertEqual(insertion_sort([]), [])
+        self.assertEqual(insertion_sort([1]), [1])
+        self.assertEqual(insertion_sort([2, 1]), [1, 2])
+        self.assertEqual(insertion_sort([1, 2]), [1, 2])
+
+
+if __name__ == "__main__":
+    unittest.main()
 
 # TODO: merge_sort
